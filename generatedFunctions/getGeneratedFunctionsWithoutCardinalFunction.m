@@ -3,3 +3,4 @@ function generatedFunctionsWithoutCardinalFunction = getGeneratedFunctionsWithou
     tempVector1 = [generatedFunctions(1: (cardinalFunctionIndex - 1)) generatedFunctions((cardinalFunctionIndex + 1):end)];
     generatedFunctionsWithoutCardinalFunction = tempVector1;
 end
+

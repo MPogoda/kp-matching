@@ -10,3 +10,4 @@ function efficiency = calculateEfficiency(inforkune, centeredCorrelantsMatrix, c
         efficiency = -efficiency;
     end
 end
+

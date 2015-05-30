@@ -7,3 +7,4 @@ function correlantsMatrix = calculateCorrelantsMatrix(calculateCorrelantFunction
         end
     end
 end
+

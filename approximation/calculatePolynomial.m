@@ -8,3 +8,4 @@ function polynomial = calculatePolynomial(alpha0, alphaVector, generatedFunction
         polynomial = polynomial + alphaVectorWithAlpha0(i) * generatedFunctionsWithoutCardinalFunction{i};
     end
 end
+

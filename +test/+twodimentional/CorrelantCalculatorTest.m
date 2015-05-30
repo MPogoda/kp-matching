@@ -1,7 +1,7 @@
 classdef CorrelantCalculatorTest < TestCase
     properties
     end
-    
+
     methods
         % The first method in the methods block is the constructor.
         % It takes the desired test method name as its input argument,
@@ -9,12 +9,12 @@ classdef CorrelantCalculatorTest < TestCase
         function self = CorrelantCalculatorTest(name)
             self = self@TestCase(name);
         end
-        
+
         % classic xUnit set up
         function setUp(self)
-            
+
         end
-        
+
         function testCalculateCorrelant(self)
             lowBound = 0;
             step = .01;
@@ -31,3 +31,4 @@ classdef CorrelantCalculatorTest < TestCase
         end
     end
 end
+

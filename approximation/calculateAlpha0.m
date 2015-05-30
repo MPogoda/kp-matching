@@ -6,3 +6,4 @@ function alpha0 = calculateAlpha0(alphaVector, cardinalFunctionIndex, correlants
 
     alpha0 = (correlantsMatrix(cardinalFunctionIndex, 1) - correlantSubVector * alphaVector) / correlantsMatrix(1, 1);
 end
+

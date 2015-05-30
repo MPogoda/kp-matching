@@ -1,17 +1,17 @@
 function generativeTransforms = generateGenerativeTransforms(varargin)
 % INPUT:
-%  • type                               -   string represents type of function's system.
-%                                           can be one of following values:
-%                                           'int', 'invertInt', 'exp', 'sin'
-%  • count                              -   number of functions in system
-%  • includeCardinalFunction(optional)  -   whether include cardinal
-%                                           function to generative transforms. FALSE by default.
-%  • cardinalFunctionIndex(optional)    -   if includeCardinalFunction =
+%  - type                               -   string represents type of function's system.
+%                                        can be one of following values:
+%                                        'int', 'invertInt', 'exp', 'sin'
+%  - count                              -   number of functions in system
+%  - includeCardinalFunction(optional)  -   whether include cardinal
+%                                        function to generative transforms. FALSE by default.
+%  - cardinalFunctionIndex(optional)    -   if includeCardinalFunction =
 %                                           true, this parameter specifies
 %                                           index of function to be cardinal
 %
 % OUTPUT:
-%  • generativeTransforms   -   cell-array of generative functions' handles
+%  - generativeTransforms   -   cell-array of generative functions' handles
 %                               formed according to specified type consists of
 %                               "count" number of functions.
 type = varargin{1};
@@ -38,3 +38,4 @@ for i = 1:count
     end;
 end
 end
+

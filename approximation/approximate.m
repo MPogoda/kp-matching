@@ -2,19 +2,19 @@
 % generated functions from generatedFunctionsSystem object
 %
 % INPUT:
-%  • generatedFunctionsSystem   -   object with all info about generated functions system
+%  - generatedFunctionsSystem   -   object with all info about generated functions system
 %
 % OUTPUT:
-%  • result                     -   structure that contains following fields:
-%                                       • correlantsMatrix
-%                                       • centeredCorrelantsMatrix
-%                                       • systemMatrix
-%                                       • freeVector
-%                                       • alphaVector
-%                                       • inforkune
-%                                       • alpha0
-%                                       • polynomial
-%                                       • efficiency
+%  - result                     -   structure that contains following fields:
+%                                       - correlantsMatrix
+%                                       - centeredCorrelantsMatrix
+%                                       - systemMatrix
+%                                       - freeVector
+%                                       - alphaVector
+%                                       - inforkune
+%                                       - alpha0
+%                                       - polynomial
+%                                       - efficiency
 function result = approximate(generatedFunctionsSystem)
 
     correlantsMatrix = generatedFunctionsSystem.correlantsMatrix;
@@ -38,3 +38,4 @@ function result = approximate(generatedFunctionsSystem)
     result.polynomial = polynomial;
     result.efficiency = efficiency;
 end
+

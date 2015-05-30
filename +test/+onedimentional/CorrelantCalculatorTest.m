@@ -7,7 +7,7 @@ classdef CorrelantCalculatorTest < TestCase
         b
         x
     end
-    
+
     methods
         % The first method in the methods block is the constructor.
         % It takes the desired test method name as its input argument,
@@ -15,11 +15,11 @@ classdef CorrelantCalculatorTest < TestCase
         function self = CorrelantCalculatorTest(name)
             self = self@TestCase(name);
         end
-        
+
         % classic xUnit set up
         function setUp(self)
             import kunchenko.*;
-            
+
             self.func = @(x)x.^2;
             self.step = 10e-5;
             self.correlantsQuantity = 4;
@@ -28,26 +28,26 @@ classdef CorrelantCalculatorTest < TestCase
             self.b = 1;
             self.x = self.a:self.step:self.b;
         end
-        
+
         function testQuad(self)
             integralValue = quad(self.func, 0, 1);
             assertEqual(integralValue, 1/3);
         end
-        
+
         function testTrapz(self)
             integralValue  = self.step*trapz(self.func(0:self.step:1));
             assertElementsAlmostEqual(integralValue, 1/3);
         end
-        
+
         function testCompareTrapzAndQuad(self)
             trapzIntegralValue = self.step*trapz(self.func(self.a:self.step:self.b));
             quadIntegralValue = quad(self.func, self.a, self.b);
             assertElementsAlmostEqual(trapzIntegralValue, quadIntegralValue);
         end
-        
+
         function testCorrelantsSystemCalculation(self)
             import kunchenko.*;
-            
+
             generativeTransformName = {'int', 'invertInt', 'exp', 'sin'};
             % testin all generative transforms types
             for k = 1:length(generativeTransformName)
@@ -64,7 +64,7 @@ classdef CorrelantCalculatorTest < TestCase
                 end
             end
         end
-        
+
         % classic xUnit tear down
         function tearDown(self)
             self.func = [];
@@ -76,3 +76,4 @@ classdef CorrelantCalculatorTest < TestCase
         end
     end
 end
+

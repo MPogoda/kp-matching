@@ -1,6 +1,6 @@
 classdef Kunchenko1DTemplateMatcherTest < TestCase
     %KUNCHENKORECOGNIZERTEST 1D recognition implementation tests
-    
+
     methods
         % The first method in the methods block is the constructor.
         % It takes the desired test method name as its input argument,
@@ -8,22 +8,22 @@ classdef Kunchenko1DTemplateMatcherTest < TestCase
         function self = Kunchenko1DTemplateMatcherTest(name)
             self = self@TestCase(name);
         end
-        
+
         % classic xUnit set up
         function setUp(self)
         end
-        
+
         function testCompareOOPAndProceduralRecognition(self)
             step = .1;
             [~, template] = template1(step);
             zeroPattern = zeros(1, length(template));
             signal = [zeroPattern template zeroPattern -template zeroPattern template zeroPattern];
-            
+
             cardinalFunctionIndex = 2;
             generativeTransforms = generateGenerativeTransforms('int', 4);
             calculateCorrelantFunction = @calculateOneDimentionalCorrelant;
 
-            
+
             tic;
 
             oopRecognitionResult = match(...
@@ -33,72 +33,71 @@ classdef Kunchenko1DTemplateMatcherTest < TestCase
                 generativeTransforms, ...
                 cardinalFunctionIndex, ...
                 calculateCorrelantFunction);
-            
+
             oopElapsed = toc;
-            
+
             tic;
-            
+
             [polynomial, ~, effectogram] = KunchenkoNew(signal, template, generativeTransforms);
             proceduralRecognitionResult.signal = signal;
             proceduralRecognitionResult.polynomial = polynomial;
             proceduralRecognitionResult.effectogram = effectogram;
-            
+
             proceduralElapsed = toc;
-            
+
             display([oopElapsed proceduralElapsed]);
-            
+
             test.onedimentional.Kunchenko1DTemplateMatcherTest.plotRecognitionResults(oopRecognitionResult, proceduralRecognitionResult);
-            
+
             absoluteTolerance = 10e-5;
             assertElementsAlmostEqual(proceduralRecognitionResult.polynomial, oopRecognitionResult.polynomial, 'absolute', absoluteTolerance);
             assertElementsAlmostEqual(proceduralRecognitionResult.effectogram, oopRecognitionResult.effectogram, 'absolute', absoluteTolerance);
         end
-        
+
         % classic xUnit tear down
         function tearDown(self)
         end
-        
+
         % util methods
     end
-    
+
     methods(Static)
         function plotRecognitionResults(oopRecognitionResult, proceduralRecognitionResult)
             figure('Color','white');
             subplot(5, 1, 1);
             plot(oopRecognitionResult.signal, '-.k');
             axis([0 length(oopRecognitionResult.signal) min(oopRecognitionResult.signal) max(oopRecognitionResult.signal)]);
-            legend('Вихідний сигнал');
+            legend('Output signal');
             grid on;
-            
+
             subplot(5, 1, 2);
             plot(oopRecognitionResult.polynomial, '-k');
             hold on;
             plot(oopRecognitionResult.effectogram, '--k');
             axis([0 length(oopRecognitionResult.polynomial)  min(oopRecognitionResult.polynomial) max(oopRecognitionResult.polynomial)]);
-            legend('Апроксимація ОО підходу', 'Ефектограма ОО підходу');
+            legend('Approximation of OOP solution', 'Effectogram of OOP solution');
             grid on;
-            
+
             subplot(5, 1, 3);
             plot(proceduralRecognitionResult.polynomial, '-k');
             hold on;
             plot(proceduralRecognitionResult.effectogram, '--k');
             axis([0 length(proceduralRecognitionResult.polynomial)  min(proceduralRecognitionResult.polynomial) max(proceduralRecognitionResult.polynomial)]);
-            legend('Апроксимація процедурного підходу', 'Ефектограма процедурного підходу');
+            legend('Approximation of procedural solution', 'Effectogram of procedural solution');
             grid on;
-            
+
             subplot(5, 1, 4);
             plot(abs(oopRecognitionResult.polynomial - proceduralRecognitionResult.polynomial), '-k');
             axis([0 length(proceduralRecognitionResult.polynomial)  min(proceduralRecognitionResult.polynomial) max(proceduralRecognitionResult.polynomial)]);
-            legend('Абсолютна різниця апроксимацій');
+            legend('Absolute error between approximations');
             grid on;
-            
+
             subplot(5, 1, 5);
             plot(abs(oopRecognitionResult.effectogram - proceduralRecognitionResult.effectogram), '-k');
             axis([0 length(proceduralRecognitionResult.effectogram)  min(proceduralRecognitionResult.effectogram) max(proceduralRecognitionResult.effectogram)]);
-            legend('Абсолютна різниця ефектограм');
+            legend('Absolute error between effectograms');
             grid on;
         end
     end
-    
 end
 

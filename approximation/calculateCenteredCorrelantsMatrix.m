@@ -9,3 +9,4 @@ function centeredCorrelantsMatrix = calculateCenteredCorrelantsMatrix(correlants
         end
     end
 end
+

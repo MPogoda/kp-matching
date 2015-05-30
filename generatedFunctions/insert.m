@@ -18,4 +18,5 @@ function [generatedFunctions correlantsMatrix] = insert(functionToInsert, insert
     newCorrelantsMatrix(:, insertionIndex) = correlantsColToAdd;
     newCorrelantsMatrix(insertionIndex, :) = correlantsColToAdd';
     correlantsMatrix = newCorrelantsMatrix;
-end        
+end
+

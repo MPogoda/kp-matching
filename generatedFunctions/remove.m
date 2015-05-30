@@ -11,3 +11,4 @@ function [generatedFunctions correlantsMatrix] = remove(index, generatedFunction
     % removeGeneratedFunction
     generatedFunctions = [generatedFunctions(1:(index - 1)) generatedFunctions((index + 1):end)];
 end
+
